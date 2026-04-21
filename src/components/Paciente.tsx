@@ -56,54 +56,77 @@ const Paciente = ({ paciente }: PacienteProps) => {
     }
 
     return (
-        <div className="mx-5 my-10 px-5 py-10 bg-white shadow-md rounded-xl">
-            <PacienteDetalle label="ID" data={paciente.id} />
-            <PacienteDetalle label="Nombre Completo" data={paciente.nombreCompleto} />
-            <PacienteDetalle label="Fecha de Nacimiento" data={paciente.fechaNacimiento} />
-            <PacienteDetalle label="CURP" data={paciente.curp} />
-            <PacienteDetalle label="Lugar de Nacimiento" data={paciente.lugarNacimiento} />
-            <PacienteDetalle label="Matrícula UABC" data={paciente.matriculaUABC} />
-            <PacienteDetalle label="Curso Coursera" data={paciente.cursoCoursera} />
-            <PacienteDetalle label="Ofertada Por" data={paciente.ofertadaPor} />
-            <PacienteDetalle label="Número de Cursos" data={paciente.numeroCursos} />
-            <PacienteDetalle label="Duración en Horas" data={paciente.duracionHoras} />
+        <div className="border border-cyan-500/30 rounded-lg p-4 bg-gray-800/50 hover:border-cyan-500/60 hover:bg-gray-800/70 transition">
+            {/* Encabezado */}
+            <div className="mb-4 pb-4 border-b border-cyan-500/20">
+                <div className="flex justify-between items-start">
+                    <div>
+                        <p className="text-xs text-cyan-300/70 font-semibold">ID</p>
+                        <p className="text-lg font-semibold text-cyan-400">{paciente.id}</p>
+                    </div>
+                    <div className="text-right flex-1">
+                        <p className="text-xs text-cyan-300/70 font-semibold">Nombre</p>
+                        <p className="text-sm font-semibold text-gray-100">{paciente.nombreCompleto}</p>
+                    </div>
+                </div>
+            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 mt-10">
+            {/* Detalles */}
+            <div className="space-y-0 mb-4 text-sm">
+                <PacienteDetalle label="Nacimiento" data={paciente.fechaNacimiento} />
+                <PacienteDetalle label="CURP" data={paciente.curp} />
+                <PacienteDetalle label="Lugar" data={paciente.lugarNacimiento} />
+                <PacienteDetalle label="Matrícula" data={paciente.matriculaUABC} />
+                <PacienteDetalle label="Curso" data={paciente.cursoCoursera} />
+                <PacienteDetalle label="Ofertada" data={paciente.ofertadaPor} />
+                <PacienteDetalle label="Num. Cursos" data={paciente.numeroCursos} />
+                <PacienteDetalle label="Horas" data={paciente.duracionHoras} />
+            </div>
+
+            {/* Botones */}
+            <div className="grid grid-cols-4 gap-2">
                 <button
                     type="button"
-                    className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg text-sm"
+                    className="text-xs py-1.5 px-2 bg-cyan-600/80 hover:bg-cyan-600 text-white font-semibold rounded transition"
                     onClick={() => handleClickEditar()}
-                >Editar</button>
+                >
+                    Editar
+                </button>
 
                 <button
                     type="button"
-                    className="w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white font-bold uppercase rounded-lg text-sm"
+                    className="text-xs py-1.5 px-2 bg-blue-600/80 hover:bg-blue-600 text-white font-semibold rounded transition"
                     onClick={() => handleDescargarDocumento()}
-                >Documento Coursera</button>
+                >
+                    Doc
+                </button>
 
                 <button
                     type="button"
-                    className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase rounded-lg text-sm"
+                    className="text-xs py-1.5 px-2 bg-purple-600/80 hover:bg-purple-600 text-white font-semibold rounded transition"
                     onClick={() => handleDescargarCertificado()}
-                >Certificado Coursera</button>
+                >
+                    Cert
+                </button>
 
                 <button
                     type="button"
-                    className="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg text-sm"
+                    className="text-xs py-1.5 px-2 bg-red-600/80 hover:bg-red-600 text-white font-semibold rounded transition"
                     onClick={() => setIsOpened(true)}
-                >Eliminar</button>
+                >
+                    Borrar
+                </button>
 
                 <DialogModal
-                        title="Confirmar eliminación"
-                        isOpened={isOpened}
-                        onProceed={onProceed}
-                        onClose={() => setIsOpened(false)}
-                    >
-                        <p>
-                            Vas a eliminar el registro de {paciente.nombreCompleto}. Esta acción no se puede deshacer.
-                        </p>
-                    </DialogModal>
-
+                    title="Confirmar eliminación"
+                    isOpened={isOpened}
+                    onProceed={onProceed}
+                    onClose={() => setIsOpened(false)}
+                >
+                    <p>
+                        ¿Eliminar a <strong>{paciente.nombreCompleto}</strong>? Esta acción no se puede deshacer.
+                    </p>
+                </DialogModal>
             </div>
         </div>
     )

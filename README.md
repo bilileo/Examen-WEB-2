@@ -1,53 +1,117 @@
-# React + TypeScript + Vite
+# 📚 Registry - Sistema de Registro Académico
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Una aplicación moderna y elegante para gestionar registros de estudiantes en cursos Coursera, diseñada con tecnología de punta y experiencia de usuario excepcional.
 
-Currently, two official plugins are available:
+## 🚀 Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- ✨ **Diseño Dark Mode Moderno** - Interfaz visual futurista con acentos cian
+- 📝 **Formulario Validado** - Validación completa de datos académicos
+- 👥 **Gestión de Registros** - Crear, editar, eliminar registros de estudiantes
+- 📄 **Generación de Documentos** - Exportar información a PDF
+- 🎓 **Certificados** - Generar certificados personalizados
+- 💾 **Almacenamiento Persistente** - Zustand para estado global
+- 🎨 **Responsive Design** - Funciona en cualquier dispositivo
 
-## React Compiler
+## 🛠️ Stack Tecnológico
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **Frontend Framework**: React 19 + TypeScript
+- **Styling**: Tailwind CSS 4
+- **Validación**: react-hook-form
+- **Estado Global**: Zustand
+- **Iconos**: lucide-react
+- **PDF Generation**: jsPDF
+- **Build Tool**: Vite 7
+- **Notifications**: react-toastify
 
-Note: This will impact Vite dev & build performances.
+## 📥 Instalación Local
 
-## Expanding the ESLint configuration
+```bash
+# Clonar el repositorio
+git clone <your-repo-url>
+cd Examen
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Instalar dependencias
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Ejecutar en desarrollo
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Compilar para producción
+npm run build
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Preview de producción local
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🌐 Despliegue en Vercel
 
-```js
+### Opción 1: Via Git (Recomendado)
+
+1. Push tu código a GitHub/GitLab/Bitbucket
+2. Ve a [vercel.com](https://vercel.com)
+3. Click en "New Project"
+4. Selecciona tu repositorio
+5. Vercel detectará automáticamente la configuración
+6. Click en "Deploy"
+
+### Opción 2: Via Vercel CLI
+
+```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Desplegar
+vercel
+
+# Deploy a producción
+vercel --prod
+```
+
+### Opción 3: Manual Upload
+
+1. Ejecuta `npm run build` localmente
+2. Upload la carpeta `dist/` a Vercel
+
+## 🔧 Variables de Entorno
+
+No se requieren variables de entorno para esta aplicación. Todos los datos se almacenan localmente en el navegador.
+
+## 📋 Validaciones de Formulario
+
+- **Nombre Completo**: 3-100 caracteres, solo letras
+- **Fecha de Nacimiento**: 15-120 años de edad
+- **CURP**: 18 caracteres, formato específico (EIDL050708HBCSZSA4)
+- **Lugar de Nacimiento**: 2-100 caracteres
+- **Matrícula UABC**: Exactamente 7 números
+- **Curso Coursera**: 3-200 caracteres
+- **Ofertada Por**: 3-150 caracteres
+- **Número de Cursos**: 1-999
+- **Duración (horas)**: 1-9999
+
+## 🎨 Paleta de Colores
+
+- **Primario**: Cyan-400/500
+- **Fondo**: Gray-950/900
+- **Acentos Secundarios**: Blue-400/600
+- **Texto**: Gray-300/400
+- **Énfasis**: Cyan-300/400
+
+## 👥 Equipo
+
+- **Oscar Tan Guan** - Chief Design Officer & Strategic Architect
+- **Luis Fernando Espinoza Díaz** - Lead Developer & Full Stack Innovator
+
+## 📄 Licencia
+
+MIT © 2024 Registry Team
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor abre un issue o PR para cambios significativos.
+
+---
+
+**Made with ❤️ and ⚡ by Oscar & Luis**
 // eslint.config.js
 import reactX from 'eslint-plugin-react-x'
 import reactDom from 'eslint-plugin-react-dom'
