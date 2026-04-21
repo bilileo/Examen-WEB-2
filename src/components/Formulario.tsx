@@ -226,7 +226,7 @@ const Formulario = () => {
 
           <div>
             <label htmlFor="cursoCoursera" className="text-xs font-semibold text-cyan-300 block mb-1">
-              Curso Coursera
+              Curso a afiliar en Coursera
             </label>
             <input  
               id="cursoCoursera"
@@ -308,7 +308,7 @@ const Formulario = () => {
 
           <div>
             <label htmlFor="duracionHoras" className="text-xs font-semibold text-cyan-300 block mb-1">
-              Duración (horas)
+              Duración del curso (horas)
             </label>
             <input  
               id="duracionHoras"

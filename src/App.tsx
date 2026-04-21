@@ -23,7 +23,7 @@ function App() {
                 Registro de Personas
               </h1>
               <p className="text-gray-400">
-                Gestiona el registro de personas en cursos Coursera
+                Gestiona a las personas listas para generar su documentación de Coursera. 
               </p>
             </div>
           </div>

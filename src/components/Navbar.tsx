@@ -16,9 +16,9 @@ export default function Navbar({ currentPage, onPageChange }: NavbarProps) {
           <div className="flex items-center cursor-pointer" onClick={() => { onPageChange('home'); setIsOpen(false); }}>
             <div className="flex items-center space-x-3">
               <div className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg p-2">
-                <span className="text-white font-bold text-lg">R</span>
+                <span className="text-white font-bold text-lg">TGED - Solutions</span>
               </div>
-              <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Registry</span>
+              <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Generador de documentación UABC-Coursera</span>
             </div>
           </div>
 
