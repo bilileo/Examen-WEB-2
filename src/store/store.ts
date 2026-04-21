@@ -42,6 +42,6 @@ export const usePersonaStore = create<PersonasState>()( // <-- () extra
  limpiarPersonaActiva: () =>
  set(() => ({ personaActiva: null })),
  }),
- { name: 'personas-storage' } // <-- configuracion
+ { name: 'personas-storage' } // <-- nombre para localStorage
  )
 )

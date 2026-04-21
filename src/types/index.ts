@@ -1,4 +1,4 @@
-export type Persona = {
+export type Persona = { // datos de una persona registrada
     id: string;
     nombreCompleto: string;
     fechaNacimiento: string;
