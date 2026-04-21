@@ -1,47 +1,47 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { DraftPatient, Patient } from '../types';
+import type { DraftPersona, Persona } from '../types';
 import { v4 as uuidv4 } from 'uuid';
-type PacientesState = {
- pacientes: Patient[];
- pacienteActivo: Patient | null;
- agregarPaciente: (data: DraftPatient) => void;
- eliminarPaciente: (id: Patient['id']) => void;
- establecerPacienteActivo: (paciente: Patient) => void;
- actualizarPaciente: (data: DraftPatient) => void;
- limpiarPacienteActivo: () => void;
+type PersonasState = {
+ personas: Persona[];
+ personaActiva: Persona | null;
+ agregarPersona: (data: DraftPersona) => void;
+ eliminarPersona: (id: Persona['id']) => void;
+ establecerPersonaActiva: (persona: Persona) => void;
+ actualizarPersona: (data: DraftPersona) => void;
+ limpiarPersonaActiva: () => void;
 }
-const crearPaciente = (data: DraftPatient): Patient => ({
+const crearPersona = (data: DraftPersona): Persona => ({
  id: uuidv4(),
  ...data
 })
-export const usePacienteStore = create<PacientesState>()( // <-- () extra
+export const usePersonaStore = create<PersonasState>()( // <-- () extra
  persist(
  (set) => ({
- pacientes: [],
- pacienteActivo: null,
- agregarPaciente: (data) =>
+ personas: [],
+ personaActiva: null,
+ agregarPersona: (data) =>
  set((state) => ({
- pacientes: [...state.pacientes, crearPaciente(data)]
+ personas: [...state.personas, crearPersona(data)]
  })),
- eliminarPaciente: (id) =>
+ eliminarPersona: (id) =>
  set((state) => ({
- pacientes: state.pacientes.filter(p => p.id !== id)
+ personas: state.personas.filter(p => p.id !== id)
  })),
- establecerPacienteActivo: (paciente) =>
- set(() => ({ pacienteActivo: paciente })),
- actualizarPaciente: (data) =>
+ establecerPersonaActiva: (persona) =>
+ set(() => ({ personaActiva: persona })),
+ actualizarPersona: (data) =>
  set((state) => ({
- pacientes: state.pacientes.map(p =>
- p.id === state.pacienteActivo?.id
+ personas: state.personas.map(p =>
+ p.id === state.personaActiva?.id
  ? { id: p.id, ...data }
  : p
  ),
- pacienteActivo: null
+ personaActiva: null
  })),
- limpiarPacienteActivo: () =>
- set(() => ({ pacienteActivo: null })),
+ limpiarPersonaActiva: () =>
+ set(() => ({ personaActiva: null })),
  }),
- { name: 'pacientes-storage' } // <-- configuracion
+ { name: 'personas-storage' } // <-- configuracion
  )
 )

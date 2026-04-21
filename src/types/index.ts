@@ -1,11 +1,15 @@
-export type Patient = {
+export type Persona = {
     id: string;
-    name: string;
-    caretaker: string;
-    email: string;
-    date: string;
-    symptoms: string;
+    nombreCompleto: string;
+    fechaNacimiento: string;
+    curp: string;
+    lugarNacimiento: string;
+    matriculaUABC: string;
+    cursoCoursera: string;
+    ofertadaPor: string;
+    numeroCursos: string;
+    duracionHoras: string;
 }
 
 
-export type DraftPatient = Omit<Patient, 'id'>;
+export type DraftPersona = Omit<Persona, 'id'>;

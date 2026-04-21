@@ -1,13 +1,14 @@
-import type { Patient } from "../types"
+import type { Persona } from "../types"
 import PacienteDetalle from "./PacienteDetalle"
-import { usePacienteStore } from '../store/store' // Importamos el store para eliminar pacientes
+import { usePersonaStore } from '../store/store' // Importamos el store para eliminar personas
 import DialogModal from "./DialogModal";
 import { useState } from "react";
 import { toast } from 'react-toastify'
+import { generateDocumentoCoursera } from '../utils/generatePDF'
 
 
 type PacienteProps = {
-    paciente: Patient
+    paciente: Persona
 }
 
 const Paciente = ({ paciente }: PacienteProps) => {
@@ -15,33 +16,47 @@ const Paciente = ({ paciente }: PacienteProps) => {
     const [isOpened, setIsOpened] = useState(false);
 
     const onProceed = () => {
-        handleClickDelete(); // Llamamos a la función para eliminar el paciente cuando se hace clic en "Proceed"
+        handleClickDelete(); // Llamamos a la función para eliminar la persona cuando se hace clic en "Proceed"
     };
 
-    const eliminarPaciente = usePacienteStore((state) => state.eliminarPaciente) // Importamos la función para eliminar pacientes desde el store
-    //const getPatientById = usePacienteStore((state) => state.getPatientById)
+    const eliminarPersona = usePersonaStore((state) => state.eliminarPersona) // Importamos la función para eliminar personas desde el store
+    //const getPersonaById = usePersonaStore((state) => state.getPersonaById)
     
     // Importar la funcion del store para editar 
-    const establecerPacienteActivo =
-    usePacienteStore((state) => state.establecerPacienteActivo)
+    const establecerPersonaActiva =
+    usePersonaStore((state) => state.establecerPersonaActiva)
 
     const handleClickDelete = () => {
-        eliminarPaciente(paciente.id)
-        toast.info(`Paciente ${paciente.name} eliminado`)
+        eliminarPersona(paciente.id)
+        toast.info(`Persona ${paciente.nombreCompleto} eliminada`)
     }
     // Manejador del click
     const handleClickEditar = () => {
-    establecerPacienteActivo(paciente)  // Enviar el objeto completo
+    establecerPersonaActiva(paciente)  // Enviar el objeto completo
+    }
+
+    const handleDescargarDocumento = () => {
+        try {
+            generateDocumentoCoursera(paciente)
+            toast.success('Documento descargado correctamente')
+        } catch (error) {
+            toast.error('Error al generar el documento')
+            console.error(error)
+        }
     }
 
     return (
         <div className="mx-5 my-10 px-5 py-10 bg-white shadow-md rounded-xl">
             <PacienteDetalle label="ID" data={paciente.id} />
-            <PacienteDetalle label="Nombre" data={paciente.name} />
-            <PacienteDetalle label="Propietario" data={paciente.caretaker} />
-            <PacienteDetalle label="Email" data={paciente.email} />
-            <PacienteDetalle label="Fecha Alta" data={paciente.date || ''} />
-            <PacienteDetalle label="Síntomas" data={paciente.symptoms} />
+            <PacienteDetalle label="Nombre Completo" data={paciente.nombreCompleto} />
+            <PacienteDetalle label="Fecha de Nacimiento" data={paciente.fechaNacimiento} />
+            <PacienteDetalle label="CURP" data={paciente.curp} />
+            <PacienteDetalle label="Lugar de Nacimiento" data={paciente.lugarNacimiento} />
+            <PacienteDetalle label="Matrícula UABC" data={paciente.matriculaUABC} />
+            <PacienteDetalle label="Curso Coursera" data={paciente.cursoCoursera} />
+            <PacienteDetalle label="Ofertada Por" data={paciente.ofertadaPor} />
+            <PacienteDetalle label="Número de Cursos" data={paciente.numeroCursos} />
+            <PacienteDetalle label="Duración en Horas" data={paciente.duracionHoras} />
 
             <div className="flex flex-col lg:flex-row gap-3 justify-between mt-10">
                 <button
@@ -49,6 +64,12 @@ const Paciente = ({ paciente }: PacienteProps) => {
                     className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg"
                     onClick={() => handleClickEditar()}
                 >Editar</button>
+
+                <button
+                    type="button"
+                    className="py-2 px-10 bg-green-600 hover:bg-green-700 text-white font-bold uppercase rounded-lg"
+                    onClick={() => handleDescargarDocumento()}
+                >Documento Coursera</button>
 
                 <button
                     type="button"
@@ -63,7 +84,7 @@ const Paciente = ({ paciente }: PacienteProps) => {
                         onClose={() => setIsOpened(false)}
                     >
                         <p>
-                            Vas a eliminar el registro de {paciente.name}. Esta acción no se puede deshacer.
+                            Vas a eliminar el registro de {paciente.nombreCompleto}. Esta acción no se puede deshacer.
                         </p>
                     </DialogModal>
 
