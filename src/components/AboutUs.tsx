@@ -1,5 +1,4 @@
-import React from 'react';
-import { Zap, BarChart3, Code2, Palette, Users, Rocket, Target, Heart } from 'lucide-react';
+import { Zap, Code2, Palette, Users, Rocket, Target, Heart } from 'lucide-react';
 
 export default function AboutUs() {
   return (
