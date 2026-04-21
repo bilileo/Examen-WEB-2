@@ -42,7 +42,7 @@ const Formulario = () => {
         toast.success('Persona agregada correctamente')
         }
         
-        // Usar setTimeout para que reset ocurra DESPUÉS de que react-hook-form procese todo
+        // Usar setTimeout para que reset ocurra despues de que react-hook-form procese todo
         setTimeout(() => {
             reset({
                 nombreCompleto: '',
