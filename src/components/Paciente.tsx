@@ -4,7 +4,7 @@ import { usePersonaStore } from '../store/store' // Importamos el store para eli
 import DialogModal from "./DialogModal";
 import { useState } from "react";
 import { toast } from 'react-toastify'
-import { generateDocumentoCoursera } from '../utils/generatePDF'
+import { generateCertificadoCoursera, generateDocumentoCoursera } from '../utils/generatePDF'
 
 
 type PacienteProps = {
@@ -45,6 +45,16 @@ const Paciente = ({ paciente }: PacienteProps) => {
         }
     }
 
+    const handleDescargarCertificado = () => {
+        try {
+            generateCertificadoCoursera(paciente)
+            toast.success('Certificado descargado correctamente')
+        } catch (error) {
+            toast.error('Error al generar el certificado')
+            console.error(error)
+        }
+    }
+
     return (
         <div className="mx-5 my-10 px-5 py-10 bg-white shadow-md rounded-xl">
             <PacienteDetalle label="ID" data={paciente.id} />
@@ -58,22 +68,28 @@ const Paciente = ({ paciente }: PacienteProps) => {
             <PacienteDetalle label="Número de Cursos" data={paciente.numeroCursos} />
             <PacienteDetalle label="Duración en Horas" data={paciente.duracionHoras} />
 
-            <div className="flex flex-col lg:flex-row gap-3 justify-between mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 mt-10">
                 <button
                     type="button"
-                    className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg"
+                    className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold uppercase rounded-lg text-sm"
                     onClick={() => handleClickEditar()}
                 >Editar</button>
 
                 <button
                     type="button"
-                    className="py-2 px-10 bg-green-600 hover:bg-green-700 text-white font-bold uppercase rounded-lg"
+                    className="w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white font-bold uppercase rounded-lg text-sm"
                     onClick={() => handleDescargarDocumento()}
                 >Documento Coursera</button>
 
                 <button
                     type="button"
-                    className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg"
+                    className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold uppercase rounded-lg text-sm"
+                    onClick={() => handleDescargarCertificado()}
+                >Certificado Coursera</button>
+
+                <button
+                    type="button"
+                    className="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg text-sm"
                     onClick={() => setIsOpened(true)}
                 >Eliminar</button>
 
