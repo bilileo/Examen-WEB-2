@@ -148,7 +148,7 @@ const Formulario = () => {
               id="curp"
               className="w-full px-3 py-2 bg-gray-800 border border-cyan-500/30 rounded text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 transition uppercase"  
               type="text" 
-              placeholder="EIDL050708HBCSZSA4" 
+              placeholder="EIDL900101HDFRRL09" 
               {...register('curp', {
                 required: "El CURP es obligatorio",
                 pattern: {
